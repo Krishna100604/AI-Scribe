@@ -42,6 +42,17 @@ function Login() {
     console.log(credentials);
     dispatch(login(credentials));
   };
+  const handleGoogleSignUp = () => {
+    // Replace these with your actual OAuth client ID and redirect URI
+    const clientId = 'YOUR_GOOGLE_CLIENT_ID';
+    const redirectUri = 'YOUR_REDIRECT_URI';
+
+    // Construct the OAuth URL
+    const authUrl = `https://accounts.google.com/o/oauth2/auth?response_type=code&client_id=${clientId}&redirect_uri=${redirectUri}&scope=profile%20email&access_type=offline`;
+
+    // Redirect user to Google OAuth consent screen
+    window.location.href = authUrl;
+};
 
   return (
     <section className="login-page ">
@@ -99,7 +110,7 @@ function Login() {
                 </div>
                 <Button
                   onClick={handleLogin}
-                  className="mt-6 bg-[#65edc6] text-black flex justify-center rounded-full"
+                className="mt-6 bg-[#65edc6] text-black flex justify-center rounded-full transform transition-transform duration-300 ease-in-out hover:scale-105 focus:outline-none focus:ring-4 focus:ring-[#65edc6]"
                   fullWidth
                 >
                   {loading ? (
@@ -107,6 +118,9 @@ function Login() {
                   ) : (
                     "Login"
                   )}
+                </Button>
+                <Button onClick={handleGoogleSignUp} className="mt-4 bg-[#dd4b39] text-white flex justify-center rounded-full transform transition-transform duration-300 ease-in-out hover:scale-105 focus:outline-none focus:ring-4 focus:ring-[#dd4b39]" fullWidth>
+                                    Sign in with Google
                 </Button>
               </form>
             </Card>
